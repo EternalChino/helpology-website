@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Helpology — Project Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F6F3;
+    --bg-alt: #EFEDE7;
+    --hero-bg: #E7EFEE;
+    --surface: #FFFFFF;
+    --border: #E3DFD6;
+    --text: #1E2A28;
+    --text-body: #35423F;
+    --text-muted: #51635F;
+    --accent: #2F6F6B;
+    --accent-dark: #1F4E4A;
+    --footer-bg: #1E2A28;
+    --footer-text: #C7D1CE;
+    --footer-muted: #8A978F;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+  h1, h2, h3 { font-family: 'Lora', serif; margin: 0; }
+  a { color: var(--accent); }
+  a:hover { color: var(--accent-dark); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 72px 32px; }
+  .nav-link { font-size: 14px; font-weight: 500; padding: 10px 2px; text-decoration: none; }
+  .nav-link:hover { text-decoration: underline; }
+  .req-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 20px; max-width: 760px; }
+  .req-list li { font-size: 16px; line-height: 1.6; color: var(--text-body); }
+  .impl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .arch-card { position: absolute; width: 260px; height: 130px; box-sizing: border-box; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; display: flex; flex-direction: column; gap: 8px; top: 40px; }
+  @media (max-width: 720px) {
+    .impl-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div style="position: sticky; top: 0; z-index: 10; width: 100%; background: var(--bg); border-bottom: 1px solid var(--border);">
+  <nav style="max-width: 1100px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+    <span style="font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--text);">Helpology</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+      <a class="nav-link" href="#background">Background</a>
+      <a class="nav-link" href="#requirements">Requirements</a>
+      <a class="nav-link" href="#architecture">Architecture</a>
+      <a class="nav-link" href="#implementation">Implementation</a>
+      <a class="nav-link" href="#conclusions">Conclusions</a>
+      <a class="nav-link" href="#references">References</a>
+    </div>
+  </nav>
+</div>
+
+<div style="width: 100%; background: var(--hero-bg);">
+  <div class="container" style="padding-top: 72px; padding-bottom: 64px;">
+    <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--accent); text-transform: uppercase; margin-bottom: 16px;">Team AMD &mdash; UTA CSE Senior Design</div>
+    <h1 style="font-size: 56px; font-weight: 700; color: var(--text); line-height: 1.1; margin-bottom: 20px;">Helpology</h1>
+    <p style="font-size: 20px; line-height: 1.5; color: var(--text-body); max-width: 680px; margin: 0 0 16px;">An automated medication dispenser that keeps dosing on schedule and keeps caregivers connected, remotely.</p>
+    <p style="font-size: 15px; line-height: 1.6; color: var(--text-muted); max-width: 680px; margin: 0;">Developed from a device concept patented by sponsor Mindy Minhchau Le (US 2025/0082546 A1), now in its third generation of Senior Design development.</p>
+  </div>
+</div>
+
+<div id="background" style="width: 100%; background: var(--bg);">
+  <div class="container">
+    <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 28px;">Background</h2>
+    <p style="font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 760px; margin: 0 0 20px;">As the population ages, managing daily medication has become an increasingly common challenge for older adults and the people who care for them. Many older adults live with multiple chronic conditions and take several medications each day &mdash; a pattern known as polypharmacy &mdash; and when combined with cognitive decline or impaired vision, this frequently leads to missed doses, accidental double dosing, and incorrect medication. The burden of preventing these outcomes often falls on family or professional caregivers, who cannot always be present for every dose.</p>
+    <p style="font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 760px; margin: 0;">Helpology is based on a device concept patented by project sponsor Mindy Minhchau Le (US Patent Publication 2025/0082546 A1), developed from her own experience managing medication for her mother. The sponsor&rsquo;s long-term goal is to bring the device to a state suitable for FDA submission as a medical device. Helpology is now in its third generation of development across successive Senior Design teams, each building on the work of the last; our team&rsquo;s focus has been resolving reliability issues in the electrical and software subsystems while preserving the working mechanical and cooling systems built by prior teams.</p>
+  </div>
+</div>
+
+<div id="requirements" style="width: 100%; background: var(--bg-alt);">
+  <div class="container">
+    <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 16px;">Key Requirements</h2>
+    <p style="font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 760px; margin: 0 0 32px;">These requirements were defined directly by the sponsor from her own caregiving experience, alongside formal timing and safety specifications in the project&rsquo;s System Requirements Specification.</p>
+    <ul class="req-list">
+      <li><strong style="color: var(--text);">Dose verification (carousel):</strong> a sensor or camera confirms whether a dispensed dose remains in the cup or was removed.</li>
+      <li><strong style="color: var(--text);">Dose verification (eye-drop compartments):</strong> compartments open only when due, close after a timeout, and confirm bottle return.</li>
+      <li><strong style="color: var(--text);">Motion-triggered event recording:</strong> short clips are captured on motion within 3&ndash;6 feet, rather than continuously; facial recognition is not used.</li>
+      <li><strong style="color: var(--text);">Caregiver&ndash;patient communication:</strong> the caregiver can speak to the patient in real time through the device&rsquo;s screen and speaker.</li>
+      <li><strong style="color: var(--text);">Patient reminders:</strong> toggleable instructions escalate from a spoken prompt to a flashing light to an alarm.</li>
+      <li><strong style="color: var(--text);">Caregiver-initiated dose hold:</strong> feasibility of holding the next dose when the current one is unretrieved, without creating a missed-dose risk.</li>
+      <li><strong style="color: var(--text);">Video retention and privacy:</strong> event video is retained roughly 7 days by default, with caregiver view, save, and delete access; deleting a video never deletes its medication event record.</li>
+    </ul>
+    <p style="font-size: 14px; line-height: 1.6; color: var(--text-muted); max-width: 760px; margin: 28px 0 0; padding-top: 20px; border-top: 1px solid var(--border);">Core timing specifications: dosing events begin within 5 seconds of their schedule, even without network connectivity; compartment state is confirmed within 1 second; and the refrigerated compartment is held between 2&ndash;8&deg;C.</p>
+  </div>
+</div>
+
+<div id="architecture" style="width: 100%; background: var(--bg);">
+  <div class="container">
+    <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 16px;">Architectural Design</h2>
+    <p style="font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 760px; margin: 0 0 40px;">Helpology&rsquo;s architecture is organized into three independent layers, connected only through defined interfaces, so that a network outage never prevents a scheduled dose from being delivered.</p>
+
+    <div style="width: 100%; overflow-x: auto;">
+      <div style="position: relative; width: 1100px; height: 210px; min-width: 1100px;">
+        <svg width="159" height="8" viewBox="0 0 159 8" preserveAspectRatio="none" style="position: absolute; left: 260px; top: 96px; width: 159px; height: 8px; overflow: visible; fill: none; stroke: #2F6F6B; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="arrow-1" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#2F6F6B" stroke="none"/></marker></defs><path d="M 0 4 L 155 4" marker-end="url(#arrow-1)"></path></svg>
+        <div style="position: absolute; left: 250px; top: 112px; width: 180px; text-align: center; font-size: 12px; line-height: 1.4; color: var(--text-muted);">video, event data &amp; schedule (both ways)</div>
+
+        <svg width="159" height="8" viewBox="0 0 159 8" preserveAspectRatio="none" style="position: absolute; left: 680px; top: 96px; width: 159px; height: 8px; overflow: visible; fill: none; stroke: #2F6F6B; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><defs><marker id="arrow-2" orient="auto" markerWidth="5" markerHeight="5" refX="2" refY="2" overflow="visible"><path d="M0 0 L4 2 L0 4 Z" fill="#2F6F6B" stroke="none"/></marker></defs><path d="M 0 4 L 155 4" marker-end="url(#arrow-2)"></path></svg>
+        <div style="position: absolute; left: 670px; top: 112px; width: 200px; text-align: center; font-size: 12px; line-height: 1.4; color: var(--text-muted);">notifications, video &amp; schedule edits (both ways)</div>
+
+        <div class="arch-card" style="left: 0px;">
+          <div style="font-size: 17px; font-weight: 700; color: var(--text);">Device Layer</div>
+          <div style="font-size: 13px; line-height: 1.5; color: var(--text-muted);">Raspberry Pi 4<br>Schedule &amp; Dispense Control<br>Camera &amp; Event Recording</div>
+        </div>
+        <div class="arch-card" style="left: 420px;">
+          <div style="font-size: 17px; font-weight: 700; color: var(--text);">Cloud Layer</div>
+          <div style="font-size: 13px; line-height: 1.5; color: var(--text-muted);">Firebase<br>API Gateway &amp; Sync, Video Storage, Notification Service, Event Database</div>
+        </div>
+        <div class="arch-card" style="left: 840px;">
+          <div style="font-size: 17px; font-weight: 700; color: var(--text);">Mobile App Layer</div>
+          <div style="font-size: 13px; line-height: 1.5; color: var(--text-muted);">Android<br>Caretaker UI<br>Notification &amp; Sync Client</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="implementation" style="width: 100%; background: var(--bg-alt);">
+  <div class="container">
+    <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 32px;">Implementation Details</h2>
+    <div class="impl-grid">
+      <div class="card">
+        <div style="font-size: 17px; font-weight: 700; color: var(--text);">Hardware</div>
+        <div style="font-size: 14px; line-height: 1.6; color: var(--text-muted);">Raspberry Pi 4 (Raspberry Pi OS) driving a DC-motor-and-encoder carousel, a 3&Prime; linear actuator with limit switch for the compartment door, a USB camera with embedded speaker/mic, radiator-and-fan cooling, and a 7&times;3&Prime; HDMI/micro-USB touchscreen.</div>
+      </div>
+      <div class="card">
+        <div style="font-size: 17px; font-weight: 700; color: var(--text);">Software</div>
+        <div style="font-size: 14px; line-height: 1.6; color: var(--text-muted);">Scheduling, actuator control, and event logging run in Python and C on-device, persisted to a local SQLite database so medication is never missed during a network outage; video is buffered to USB storage if the cloud is unreachable.</div>
+      </div>
+      <div class="card">
+        <div style="font-size: 17px; font-weight: 700; color: var(--text);">Cloud &amp; Mobile</div>
+        <div style="font-size: 14px; line-height: 1.6; color: var(--text-muted);">Firebase (Cloud Functions, Firestore, Storage, Cloud Messaging) handles event records, video, and push notifications; a companion Android app lets caregivers schedule medication, review history, and send real-time voice messages, with notifications mirrored to a paired smartwatch.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="conclusions" style="width: 100%; background: var(--bg);">
+  <div class="container">
+    <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 20px;">Conclusions</h2>
+    <p style="font-size: 16px; line-height: 1.7; color: var(--text-body); max-width: 760px; margin: 0;">Helpology&rsquo;s design closely matches the sponsor&rsquo;s goals: reliable scheduled dispensing with confirmed, not assumed, retrieval, plus remote caregiver visibility. Our team&rsquo;s main contribution was improving reliability left incomplete by prior teams &mdash; camera-verified retrieval, a consolidated Firebase backend, and a working Android app. Scope was narrowed, with sponsor approval, to prioritize reliability within budget and timeline.</p>
+  </div>
+</div>
+
+<div id="references" style="width: 100%; background: var(--footer-bg);">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 56px 32px;">
+    <h2 style="font-size: 22px; font-weight: 700; color: #FFFFFF; margin-bottom: 16px;">References</h2>
+    <p style="font-size: 14px; line-height: 1.7; color: var(--footer-text); max-width: 760px; margin: 0 0 40px;">Anthropic. (2026). <em>Claude</em> [Large language model]. <a href="https://claude.ai" style="color: #8FC8C2;">https://claude.ai</a> &mdash; used for documentation drafting, circuit schematics, and content development on this project.</p>
+    <div style="border-top: 1px solid #35423F; padding-top: 24px; font-size: 13px; line-height: 1.6; color: var(--footer-muted);">
+      Team AMD &middot; Dean Trammell, Pariwesh Regmi, Ruben Rocha, Angel Montalvo, Sam Trinh &middot; The University of Texas at Arlington<br>
+      Sponsor: Mindy Minhchau Le
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
